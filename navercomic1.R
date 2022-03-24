@@ -1,3 +1,5 @@
+library(rvest)
+
 url <- "https://comic.naver.com/genre/bestChallenge.nhn"
 webtoon <- read_html(url)
 
