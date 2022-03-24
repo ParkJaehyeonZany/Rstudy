@@ -1,3 +1,5 @@
+library(rvest)
+
 url <- "https://comic.naver.com/genre/bestChallenge?&page="
 
 webtoon_info <- NULL
