@@ -152,11 +152,11 @@ df$imsi <- 0
 
 
 
-getwd() # get working directory, (참고) setwd('xxx')
+getwd() # get working directory, (참고) 경로 설정 : setwd('c:/pjh/Rexam/')
 
 #csv파일열기
 score <- read.csv("data/score.csv") # 상대패스
-score <- read.csv("c:/kjh/Rexam/data/score.csv") # 절대패스
+score <- read.csv("c:/pjh/Rexam/data/score.csv") # 절대패스
 score
 str(score)
 score$sum <- 
