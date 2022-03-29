@@ -31,7 +31,7 @@ wcount <- head(as.integer(text_mining_result), 10)
 
 text_mining_df <- data.frame(wname, wcount)
 View(text_mining_df)
-write.csv(text_mining_df, "output/movie_top_word.csv", fileEncoding = "UTF-8")
+write.csv(text_mining_df, "output/movie_top_word2.csv", fileEncoding = "UTF-8")
 
 
 # 문제1 - 예시2
@@ -40,12 +40,12 @@ movie_review$vreview <- gsub("[ㄱ-ㅎㅏ-ㅣa-zA-Z[:punct:][:digit:]]", "", mov
 movie_review$vreview
 word_data_noun <-sapply(movie_review$vreview, extractNoun)
 
-word_table <-table(unlist(word_data_noun)) # unlist 왜 하는것인가
+word_table <- table(unlist(word_data_noun)) # unlist 왜 하는것인가
 word_table2 <- sort(word_table, decreasing=T)
 word_top10_df <- data.frame(head(word_table2, 10))
 colnames(word_top10_df) <- c("wname", "wcount")
 View(word_top10_df)
-write.csv(word_top10_df, "output/movie_top_word2.csv")
+write.csv(word_top10_df, "output/movie_top_word3.csv")
 
 
 # 문제2

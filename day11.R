@@ -32,6 +32,8 @@ Sys.getlocale()
 Sys.setlocale("LC_ALL","C") # 강제 언어 삭제
 Sys.setlocale("LC_ALL","Korean") # 언어 다시 한글로
 
+
+
 # 도수분포표 내용 확인     
 barplot(ds, main='favorite season')        # 막대그래프 작성
 
