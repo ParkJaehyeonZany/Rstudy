@@ -12,6 +12,26 @@ table(favorite)                     # 도수분포 계산
 ds <- table(favorite)                      # 도수분포표 저장
 ds       
 
+# 한글 깨짐 해결 - 안됨..
+install.packages("extrafont")
+library(extrafont)
+font_import()
+fonts()
+library(ggplot2)
+theme_set(theme_grey(base_family='휴먼옛체')) 
+
+install.packages("tidyverse")
+install.packages("showtext")
+library(tidyverse)
+library(showtext)
+font_add_google('Nanum Gothic', family='NanumGothic')
+
+showtext_auto()
+
+Sys.getlocale()
+Sys.setlocale("LC_ALL","C") # 강제 언어 삭제
+Sys.setlocale("LC_ALL","Korean") # 언어 다시 한글로
+
 # 도수분포표 내용 확인     
 barplot(ds, main='favorite season')        # 막대그래프 작성
 

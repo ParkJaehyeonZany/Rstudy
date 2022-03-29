@@ -195,7 +195,7 @@ install.packages("wordcloud2")
 library(wordcloud)
 library(wordcloud2)
 
-(words <- read.csv("data/wc.csv"))
+(words <- read.csv("data/wc.csv", header = TRUE, fileEncoding = "CP949", encoding="UTF-8"))
 head(words)
 ?windowsFonts
 windowsFonts(lett=windowsFont("휴먼옛체"))
