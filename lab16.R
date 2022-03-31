@@ -49,7 +49,7 @@ tail(mpg, 10)
 #5
 View(mpg)
 #6
-mpg %>% summarise() # mpg를 열 단위로 요약한다.
+summary(mpg) # mpg를 열 단위로 요약한다
 #7
 mpg %>% count(manufacturer)
 #8
@@ -65,12 +65,14 @@ mpg %>% rename(city="cty", highway="hwy") %>% head()
 # 18
 
 #1
-mpg %>% filter(displ <= 4 | displ >= 5) %>% summarise(hwy_mean = mean(hwy)) %>% head()
+displ_max4 <- mpg %>% filter(displ <= 4) %>% summarise(hwy_mean = mean(hwy))
+displ_min5 <- mpg %>% filter(displ >= 5) %>% summarise(hwy_mean = mean(hwy))
 
-# mpg %>% 
-#   mutate(displmax4 = ifelse(displ <= 4, "displ_max4", ""), 
-#          displmin5 = ifelse(displ >= 5, "displ_min5", "")) %>% 
-#   select(hwy, displmax4, displmin5) %>% summarise(hwy_mean = mean(hwy)) %>% head(20)
+if (displ_min5 < displ_max4) {
+  cat("배기량이 4이하인 자동차가 고속도로 연비가 평균적으로 더 높다.")
+} else {
+  cat("배기량이 5이상인 자동차가 고속도로 연비가 평균적으로 더 높다.")
+}
 
 #2
 mpg %>% 
@@ -84,16 +86,21 @@ mpg %>%
 
 
 # 19
-mpg3 <- mpg %>% select(class, cty)
 #1
+mpg3 <- mpg %>% select(class, cty)
 head(mpg3)
 
 mpg3 %>% group_by(class)
 mpg3 %>% distinct(class)
 
 #2
-
-mpg3 %>% filter(class == "suv" | class == "compact") %>% summarise(mean_cty = mean(cty))
+suv <-mpg3 %>% filter(class == "suv") %>% summarise(mean_cty = mean(cty))
+compact <- mpg3 %>% filter(class == "compact") %>% summarise(mean_cty = mean(cty))
+if (suv > compact) {
+  cat("suv class의 도시연비가 더 높다.")
+} else {
+  cat("compact class의 도시연비가 더 높다.")
+}
 
 # 20
 mpg %>% filter(manufacturer == "audi") %>% arrange(desc(hwy)) %>% head(5)
