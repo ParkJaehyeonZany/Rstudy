@@ -51,8 +51,9 @@ movie_review <- read.csv("output/movie_reviews3.csv", header = TRUE, fileEncodin
 point <- movie_review$vpoint
   # df <- data.frame(title, point)
 
-par(mfrow=c(1,3))
+
 png(filename="output/clicklog5.png", height=400, width=1200, bg="white")
+par(mfrow=c(1,3))
 hist(point, main="영화 평점 히스토그램(auto)", family="maple",
      xlab="평점", ylab="평가지수", col=heat.colors(10))
 hist(point, main="영화 평점 히스토그램(1~5,6~10)", family="maple",
