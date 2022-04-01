@@ -51,9 +51,13 @@ View(mpg)
 #6
 summary(mpg) # mpg를 열 단위로 요약한다
 #7
-mpg %>% count(manufacturer)
+mpg %>% count(manufacturer) # 데이터 프레임
+mpg %>% group_by(manufacturer) %>% tally() # 티블
+
 #8
-mpg %>% group_by(manufacturer) %>% count(model)
+mpg %>% group_by(manufacturer) %>% count(model) # 데이터 프레임
+mpg %>% group_by(manufacturer, model) %>% count() # 데이터 프레임
+mpg %>% count(manufacturer, model) # 티블
 
 # 17
 
@@ -83,15 +87,13 @@ mpg %>%
 mpg %>%
   filter(manufacturer == "chevrolet" | manufacturer == "ford" | manufacturer == "honda") %>%
   summarise(mean_hwy = mean(hwy))
-
+mpg %>% filter(manufacturer %in% c("chevorolet","ford","honda")) %>% 
+  summarise(mean_cty = mean(hwy))
 
 # 19
 #1
 mpg3 <- mpg %>% select(class, cty)
 head(mpg3)
-
-mpg3 %>% group_by(class)
-mpg3 %>% distinct(class)
 
 #2
 suv <-mpg3 %>% filter(class == "suv") %>% summarise(mean_cty = mean(cty))
@@ -101,6 +103,11 @@ if (suv > compact) {
 } else {
   cat("compact class의 도시연비가 더 높다.")
 }
+
+mpg3 %>% 
+  filter(class=="suv" | class=="compact") %>% 
+  group_by(class) %>% 
+  summarise(mean_cty = mean(cty))
 
 # 20
 mpg %>% filter(manufacturer == "audi") %>% arrange(desc(hwy)) %>% head(5)
