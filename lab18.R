@@ -30,8 +30,10 @@ View(grade)
 grade %>% fill(국어, .direction="updown") %>% fill(수학, .direction="updown")
 
 # 그림5
-ggplot(grade, aes(국어, 수학)) + geom_point(size=3, aes(color=factor(성명))) # Warning message : 데이터 삭제 됨.
-  
+ggplot(grade, aes(국어, 수학)) + geom_point(size=3, aes(color=factor(성명))) ### Warning message : 결측값이 였던 데이터 삭제 됨.
+ggsave("output/result1-5.png", dpi=100)
+
+
 ### 문제2
 data <- read.csv("data/reshapedata.csv")
 View(data)
@@ -43,18 +45,12 @@ widedata <- longdata %>% spread(key="exam", value="jumsu")
 View(widedata)
 # 3
 result <- longdata %>%
-  separate("eng.mid",
-           c("subname","subnum")) %>% 
-  separate(col = "eng.mid",
-           into = c("eng", "mid"),
-           sep = ".") %>% 
-  separate(col = "math.final",
-           into = c("eng", "final"),
-           sep = ".") %>% 
-  separate(col = "math.mid",
-           into = c("math", "mid"),
-           sep = ".")
-
+  separate(col="exam",
+           into=c("subname","subnum"),
+           sep="\\.")  ### sep="\\." 무슨 차이?
+View(result)
+  
+  
 ### 문제3
 
 듀크 <- c("사과 포도 망고")
@@ -69,10 +65,12 @@ students <- c(듀크, 둘리, 또치, 도우너, 길동, 희동)
 # 1
 st_cps <- VCorpus(VectorSource(students))
 st_tdm <- TermDocumentMatrix(st_cps, control=list(wordLengths = c(1, Inf)))
-# names(st_tdm) <- c("듀크","둘리","또치","도우너","길동","희동")
 inspect(st_tdm)
 (st_m <- as.matrix(st_tdm))
-# names(st_m) <- c("듀크","둘리","또치","도우너","길동","희동")
+colnames(st_m) <- c("듀크","둘리","또치","도우너","길동","희동")
+docscom <- t(st_m) %*% st_m
+dist(docscom, method="cosine")
+
 (st_v <- sort(rowSums(st_m), decreasing=T))
 
 # 2
