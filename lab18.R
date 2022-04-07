@@ -27,10 +27,10 @@ grade$수학 <- ifelse(grade$수학 > 10, as.integer(mean(grade$수학, na.rm = 
 View(grade)
 
 # 그림4
-grade %>% fill(국어, .direction="updown") %>% fill(수학, .direction="updown")
+grade <- grade %>% fill(국어, .direction="updown") %>% fill(수학, .direction="updown")
 
 # 그림5
-ggplot(grade, aes(국어, 수학)) + geom_point(size=3, aes(color=factor(성명))) ### Warning message : 결측값이 였던 데이터 삭제 됨.
+ggplot(grade, aes(국어, 수학)) + geom_point(size=3, aes(color=factor(성명)))
 ggsave("output/result1-5.png", dpi=100)
 
 
@@ -47,7 +47,7 @@ View(widedata)
 result <- longdata %>%
   separate(col="exam",
            into=c("subname","subnum"),
-           sep="\\.")  ### sep="\\." 무슨 차이?
+           sep="\\.") 
 View(result)
   
   
