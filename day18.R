@@ -8,7 +8,7 @@ install.packages("leaps")
 ### 데이터의 정규성 검정 ###
 ##
 
-(ex<-rnorm(30,5,10))
+(ex<-rnorm(30,5,10))      # 평균은 5 표준편차는 10인 난수 30개
 plot(ex)
 hist(ex)
 shapiro.test(ex)
@@ -102,7 +102,7 @@ cor(cars$speed, cars$dist)
 model = lm(dist ~ speed, data = cars)
 
 summary(model)
-
+abline(model,col="red")
 model$residuals
 residuals(model)
 
@@ -151,7 +151,7 @@ head(height)
 model <-lm (height_son ~ height_father + height_mohter, data = height)
 model 
 
-
+str(model)
 # 결정계수와 수정된 결정계수
 summary(model)
 
@@ -201,9 +201,9 @@ par(op)
 
 # 모형비교 (model comparison)
 
-fit <- lm(Murder ~ Population + Illiteracy + Income + Frost, data=states)
+fit <- lm(Murder ~ Population + Illiteracy + Income + Frost, data=states) # fit <- lm(Murder ~ ., data=states)
 fit2 <- lm(Murder ~ Population + Illiteracy, data=states)
-summary(fit1)
+summary(fit)
 summary(fit2)
 AIC(fit, fit2)
 

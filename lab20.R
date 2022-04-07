@@ -31,7 +31,7 @@ radarchart(player.stats,                           # 데이터프레임
            axistype=1,                   # 축의 레이블 타입
            seg=4,                        # 축의 눈금 분할                         
            axislabcol='grey',            # 축의 레이블 색
-           caxislabels=seq(0,30,5),    # 축의 레이블 값
+           caxislabels=seq(0,30,5),      # 축의 레이블 값
            title='강윤구 선수의 성적',
            family="dog"
            )
