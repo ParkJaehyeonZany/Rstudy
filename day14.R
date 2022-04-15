@@ -138,7 +138,7 @@ ggplot(airquality, aes(x=Day, y=Temp, group=Day)) + geom_boxplot()
 ggplot(airquality, aes(Temp)) + geom_histogram()
 
 
-install.packages("xlsx")
+# install.packages("xlsx")
 library(xlsx)
 classDF <- read.xlsx("data/data.xlsx", 1, encoding="UTF-8")
 str(classDF)
@@ -248,7 +248,7 @@ ggplot(mpg, aes(x=displ, y=hwy,  color= manufacturer))+
 
 p1 <- ggplot(data = iris, aes(x = Petal.Width, y= Petal.Length, col=Species)) + geom_point()
 p2 <- ggplot(data = iris, aes(x = Sepal.Width, y= Sepal.Length, col=Species)) + geom_point() 
-install.packages("gridExtra")
+# install.packages("gridExtra")
 library(gridExtra)
 grid.arrange(p1, p2, p1, p2, nrow = 2)
 grid.arrange(p1, p2, nrow = 2)
@@ -256,7 +256,7 @@ grid.arrange(p1, p2, ncol = 2)
 
 # 인터랙티브 그래프 만들기
 # 패키지 준비하기
-install.packages("plotly")
+# install.packages("plotly")
 library(plotly)
 # ggplot으로 그래프 만들기
 p <- ggplot(data = mpg, aes(x = displ, y = hwy, col = drv)) + geom_point()
@@ -282,7 +282,7 @@ ggplotly(p)
 
 
 # 트리맵 라이브러리 설치
-install.packages("treemap")
+# install.packages("treemap")
 # 트리맵 메모리 로드
 library(treemap)
 

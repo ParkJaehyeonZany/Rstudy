@@ -257,6 +257,7 @@ plot(log(dist)~speed, data=cars)
 plot(sqrt(dist)~speed, data=cars) 
 par(op)
 
+shapiro.test(sqrt(cars$dist))
 
 # 종속변수를 제곱근으로 변환한 후 모형분석 그리고 회귀진단
 out2 <- lm(sqrt(dist) ~ speed, data=cars)
@@ -341,7 +342,7 @@ barplot(hat$chick, names.arg = hat$hatchery,
         main = "부화장별 병아리 부화현황", xlab = "부화장", ylab = "병아리수",
         ylim = c(0,35), family="dog")
 # 막대그래프에 text 추가, pos는 라벨의 위치
-text(x = bar_x, y = hat$chick, labels = hat$chick, pos = 3, , family="dog")
+text(x = bar_x, y = hat$chick, labels = hat$chick, pos = 3, family="dog")
 # 막대그래프에 30기준으로 빨간색 점선 추가
 abline(h = max(hat$chick), col = "red", lty = 2, lwd = 1)
 
@@ -395,7 +396,7 @@ boxplot(b$weight, col = "sky blue", main = "B 부화장 병아리 무게 상자�
 
 # 히스토그램과 Box-Plot을 같이 그리기
 par(mfrow=c(2,1))  # 행 2개, 열 1개
-hist(b$weight, col = "sky blue", xlab = "병아리 무게(g)", , main = "B 부화장 병아리 무게 분포 현황")
+hist(b$weight, col = "sky blue", xlab = "병아리 무게(g)", main = "B 부화장 병아리 무게 분포 현황")
 boxplot(b$weight, horizontal = TRUE, col = "sky blue")
 par(mfrow=c(1,1)) 
 
@@ -564,8 +565,7 @@ shapiro.test(w_mlm2$residuals)
 ## 잔차 히스토그램 : 단순 선영 회귀분석에서처럼 산점도를 그려서 회귀모델이 얼마나 적합한지 
 ## 봐야하지만 다중 회귀 분석은 독립변수가 많으므로 최소 3차원 이상의 축을 가진
 ## 그래프를 그려야 함  --> 잔차 히스토그램만 확인
-hist(w_mlm2$residuals, col = "skyblue", xlab = "residuals",
-     main = "병아리 무게 잔차 히스토그램(다중 회귀)")
+
 
 
 ## 다중회귀분석에서 변수 선택 방법

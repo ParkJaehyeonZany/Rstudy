@@ -73,7 +73,7 @@ exam %>% arrange(desc(math)) %>% head(3)
 exam %>%
   mutate(total = math + english + science) %>%  # 총합 변수 추가
   head                                          # 일부 추출
-#여러 파생변수 한 번에 추가하기
+m#여러 파생변수 한 번에 추가하기
 exam %>%
   mutate(total = math + english + science,          # 총합 변수 추가
          mean = (math + english + science)/3) %>%   # 총평균 변수 추가
@@ -291,7 +291,7 @@ View(df)
 
 
 
-install.packages("tidyr") # 추가
+# install.packages("tidyr") # 추가
 library(tidyr)
 library(dplyr)
 

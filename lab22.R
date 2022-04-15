@@ -1,3 +1,6 @@
+library(dplyr)
+library(ggplot2)
+
 purifier <- read.csv("data/purifier.csv")
 head(purifier)
 
@@ -15,3 +18,17 @@ par(op)
 
 df <- data.frame(as_time = 8*20)
 predict.lm(pur, newdata = df)
+
+
+
+#
+
+rental<- read.csv("data/purifier.csv")
+
+new_rental <- rental %>%
+  mutate(young_purifier = puifier - old_purifier) %>% 
+  select(young_purifier, old_purifier, as_times)
+
+new_rental
+
+rental_fit <- lm(as_time)
